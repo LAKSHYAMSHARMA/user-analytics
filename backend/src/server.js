@@ -6,7 +6,7 @@ const eventRoutes = require('./routes/eventRoutes');
 
 const app = express();
 const allowedOrigins = (process.env.FRONTEND_ORIGINS ||
-  'http://localhost:5173,http://localhost:5500,http://127.0.0.1:5500')
+  'https://user-analytics-gamma.vercel.app,https://user-analytics-demo-site.vercel.app,http://localhost:5173,http://localhost:5500,http://127.0.0.1:5500')
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);

@@ -6,13 +6,11 @@ A full-stack analytics application that tracks activity on a storefront demo and
 
 | Service | Link |
 | --- | --- |
-| Dashboard frontend | `https://YOUR-DASHBOARD.vercel.app` | (https://user-analytics-gamma.vercel.app)
-| Demo storefront | `https://YOUR-DEMO-SITE.vercel.app` | (https://user-analytics-demo-site.vercel.app)
+| Dashboard frontend | [user-analytics-gamma.vercel.app](https://user-analytics-gamma.vercel.app) |
+| Demo storefront | [user-analytics-demo-site.vercel.app](https://user-analytics-demo-site.vercel.app) |
 | Backend API | [user-analytics-backend-7m1e.onrender.com](https://user-analytics-backend-7m1e.onrender.com) |
 | Backend health check | [Open health check](https://user-analytics-backend-7m1e.onrender.com/health) |
 | Source repository | [github.com/LAKSHYAMSHARMA/user-analytics](https://github.com/LAKSHYAMSHARMA/user-analytics) |
-
-Replace the two `YOUR-...` Vercel values with the deployed URLs from the Vercel project settings.
 
 ## How It Works
 
@@ -126,6 +124,20 @@ For Vercel, set `VITE_API_URL` to:
 
 ```text
 https://user-analytics-backend-7m1e.onrender.com
+```
+
+Set the Vercel project root directory to `dashboard`. The `dashboard/vercel.json` rewrite serves `index.html` for client-side routes such as `/sessions` and `/heatmap`.
+
+For Render, set `FRONTEND_ORIGINS` to:
+
+```text
+https://user-analytics-gamma.vercel.app,https://user-analytics-demo-site.vercel.app
+```
+
+The backend accepts analytics events at:
+
+```text
+POST https://user-analytics-backend-7m1e.onrender.com/api/events
 ```
 
 ### Demo Storefront

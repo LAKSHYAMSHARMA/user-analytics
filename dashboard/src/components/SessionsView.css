@@ -1,0 +1,229 @@
+.sessions-view {
+  color: #17202b;
+}
+
+.sessions-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.sessions-heading h2 {
+  margin: 0 0 5px;
+  color: #17202b;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.sessions-heading p {
+  color: #6a7785;
+  font-size: 13px;
+}
+
+.sessions-count {
+  padding: 5px 9px;
+  border-radius: 5px;
+  background: #e9f4f3;
+  color: #267977;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sessions-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e1e7ec;
+  border-radius: 8px;
+}
+
+.sessions-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+.sessions-table th {
+  padding: 12px 16px;
+  background: #f7f9fa;
+  color: #748190;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.sessions-table td {
+  padding: 15px 16px;
+  border-top: 1px solid #e9edf0;
+  color: #4e5c6b;
+  font-size: 13px;
+}
+
+.sessions-table tbody tr {
+  transition: background 160ms ease;
+}
+
+.sessions-table tbody tr:hover,
+.sessions-table tbody tr.selected {
+  background: #f4faf9;
+}
+
+.session-id {
+  color: #1d3449;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.event-count {
+  display: inline-flex;
+  min-width: 26px;
+  justify-content: center;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: #f0f3f6;
+  color: #455464;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.journey-button {
+  padding: 7px 11px;
+  border: 1px solid #b9deda;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #267977;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.journey-button:hover,
+.journey-button.active {
+  border-color: #267977;
+  background: #267977;
+  color: #ffffff;
+}
+
+.sessions-message {
+  padding: 18px;
+  border: 1px dashed #cfd8df;
+  border-radius: 7px;
+  color: #6a7785;
+  font-size: 13px;
+  text-align: center;
+}
+
+.journey-panel {
+  margin-top: 24px;
+  padding: 22px 24px;
+  border: 1px solid #e1e7ec;
+  border-radius: 8px;
+  background: #fbfcfd;
+}
+
+.journey-panel h3 {
+  margin: 0 0 4px;
+  color: #1d3449;
+  font-size: 17px;
+}
+
+.journey-session-id {
+  margin-bottom: 22px;
+  color: #748190;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 11px;
+}
+
+.journey-timeline {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 24px;
+  list-style: none;
+}
+
+.journey-timeline::before {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 5px;
+  width: 1px;
+  background: #cbd9dc;
+  content: '';
+}
+
+.journey-event {
+  position: relative;
+  padding: 0 0 20px;
+}
+
+.journey-event:last-child {
+  padding-bottom: 0;
+}
+
+.journey-dot {
+  position: absolute;
+  top: 3px;
+  left: -23px;
+  width: 9px;
+  height: 9px;
+  border: 3px solid #fbfcfd;
+  border-radius: 50%;
+  background: #2c8a88;
+  box-shadow: 0 0 0 1px #8fc4c0;
+}
+
+.journey-event-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.journey-event-name {
+  color: #1d3449;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.journey-event-time {
+  color: #8995a1;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.journey-event-detail {
+  overflow: hidden;
+  margin-top: 5px;
+  color: #687786;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sessions-error {
+  margin-bottom: 14px;
+  color: #b42318;
+  font-size: 13px;
+}
+
+@media (max-width: 620px) {
+  .sessions-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .journey-panel {
+    padding: 18px;
+  }
+
+  .journey-event-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}

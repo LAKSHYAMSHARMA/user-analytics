@@ -18,45 +18,28 @@
   font-size: 13px;
 }
 
-.heatmap-search {
-  display: flex;
-  max-width: 680px;
-  margin: 0 auto 22px;
-  padding: 5px;
-  border: 1px solid #d5dfe4;
-  border-radius: 8px;
-  background: #f8fafb;
-  box-shadow: 0 4px 12px rgba(24, 39, 56, 0.05);
-  transition: border-color 160ms ease, box-shadow 160ms ease;
-}
-
-.heatmap-search:focus-within {
-  border-color: #61aaa5;
-  box-shadow: 0 0 0 3px rgba(44, 138, 136, 0.12);
-}
-
-.heatmap-search-icon {
-  display: grid;
-  width: 38px;
-  flex: 0 0 38px;
-  place-items: center;
-  color: #71808e;
-  font-size: 17px;
-}
-
-.heatmap-search input {
-  min-width: 0;
-  flex: 1;
+.heatmap-refresh {
+  display: block;
+  min-width: 128px;
+  margin: 0 0 22px auto;
+  padding: 10px 15px;
   border: 0;
-  outline: 0;
-  background: transparent;
-  color: #1d3449;
-  font: inherit;
-  font-size: 13px;
+  border-radius: 5px;
+  background: #267977;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 160ms ease, opacity 160ms ease;
 }
 
-.heatmap-search input::placeholder {
-  color: #94a0ab;
+.heatmap-refresh:hover:not(:disabled) {
+  background: #1d6462;
+}
+
+.heatmap-refresh:disabled {
+  cursor: wait;
+  opacity: 0.65;
 }
 
 .heatmap-search button {
@@ -119,17 +102,3 @@
   opacity: 0.8;
 }
 
-@media (max-width: 480px) {
-  .heatmap-search {
-    align-items: stretch;
-  }
-
-  .heatmap-search-icon {
-    display: none;
-  }
-
-  .heatmap-search button {
-    min-width: 88px;
-    padding-inline: 10px;
-  }
-}

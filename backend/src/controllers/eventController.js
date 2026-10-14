@@ -45,10 +45,13 @@ const getSessionEvents = async (req, res) => {
 
 const getHeatmap = async (req, res) => {
 	try {
-		const events = await Event.find({
-			event: 'click',
-			url: req.query.url
-		}).select({ _id: 0, pageX: 1, pageY: 1 });
+		const query = { event: 'click' };
+		if (typeof req.query.url === 'string' && req.query.url.trim()) {
+			query.url = req.query.url;
+		}
+
+		const events = await Event.find(query)
+			.select({ _id: 0, pageX: 1, pageY: 1 });
 
 		res.json(events.map(({ pageX, pageY }) => ({ x: pageX, y: pageY })));
 	} catch (error) {

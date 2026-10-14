@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './HeatmapView.css';
 import api from '../services/api';
 
 const HeatmapView = () => {
-  const [url, setUrl] = useState('');
   const [clicks, setClicks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -13,9 +12,7 @@ const HeatmapView = () => {
     setError('');
 
     try {
-      const response = await api.get(
-        `/api/heatmap?url=${encodeURIComponent(url)}`
-      );
+      const response = await api.get('/api/heatmap');
       setClicks(response.data);
     } catch {
       setError('Unable to load heatmap data.');
@@ -25,31 +22,26 @@ const HeatmapView = () => {
     }
   };
 
+  useEffect(() => {
+    const loadHeatmap = window.setTimeout(fetchHeatmap, 0);
+
+    return () => window.clearTimeout(loadHeatmap);
+  }, []);
+
   return (
     <div className="heatmap-view">
       <div className="heatmap-heading">
         <h2>Heatmap</h2>
         <p>Explore where visitors interact with a page.</p>
       </div>
-      <form
-        className="heatmap-search"
-        onSubmit={(event) => {
-          event.preventDefault();
-          fetchHeatmap();
-        }}
+      <button
+        className="heatmap-refresh"
+        type="button"
+        onClick={fetchHeatmap}
+        disabled={loading}
       >
-        <span className="heatmap-search-icon">⌕</span>
-        <input
-          type="text"
-          value={url}
-          onChange={(event) => setUrl(event.target.value)}
-          placeholder="Enter a page URL to inspect"
-          aria-label="Page URL"
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Loading...' : 'Fetch Data'}
-        </button>
-      </form>
+        {loading ? 'Loading...' : 'Refresh activity'}
+      </button>
       {error && <p className="heatmap-error">{error}</p>}
       <div className="heatmap-stage">
         <svg className="heatmap-canvas" viewBox="0 0 800 600" preserveAspectRatio="none">

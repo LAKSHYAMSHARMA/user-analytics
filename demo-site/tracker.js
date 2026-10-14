@@ -1,5 +1,6 @@
 (function () {
-  const BACKEND_URL = 'http://localhost:5000/api/events';
+  const DEMO_API_URL = (window.DEMO_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+  const BACKEND_URL = `${DEMO_API_URL}/api/events`;
 
   function getSessionId() {
     let id = localStorage.getItem('analytics_session_id');

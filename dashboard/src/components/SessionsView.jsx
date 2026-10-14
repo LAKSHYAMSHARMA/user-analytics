@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import './SessionsView.css';
+import api from '../services/api';
 
 const SessionsView = () => {
   const [sessions, setSessions] = useState([]);
@@ -15,7 +15,7 @@ const SessionsView = () => {
 
     const fetchSessions = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/sessions');
+        const response = await api.get('/api/sessions');
         if (isCurrent) {
           setSessions(response.data);
         }
@@ -49,8 +49,8 @@ const SessionsView = () => {
       setError('');
 
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/events/${encodeURIComponent(selectedSessionId)}`
+        const response = await api.get(
+          `/api/events/${encodeURIComponent(selectedSessionId)}`
         );
         if (isCurrent) {
           setTimeline(response.data);

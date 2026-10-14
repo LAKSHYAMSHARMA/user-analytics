@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
 import './HeatmapView.css';
+import api from '../services/api';
 
 const HeatmapView = () => {
   const [url, setUrl] = useState('');
@@ -13,8 +13,8 @@ const HeatmapView = () => {
     setError('');
 
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/heatmap?url=${encodeURIComponent(url)}`
+      const response = await api.get(
+        `/api/heatmap?url=${encodeURIComponent(url)}`
       );
       setClicks(response.data);
     } catch {

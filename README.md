@@ -6,12 +6,13 @@ A full-stack analytics application that tracks activity on a storefront demo and
 
 | Service | Link |
 | --- | --- |
-| Dashboard frontend | `https://user-analytics-gamma.vercel.app` |
-| Demo storefront | `https://user-analytics-demo-site.vercel.app` |
+| Dashboard frontend | `https://YOUR-DASHBOARD.vercel.app` | (https://user-analytics-gamma.vercel.app)
+| Demo storefront | `https://YOUR-DEMO-SITE.vercel.app` | (https://user-analytics-demo-site.vercel.app)
 | Backend API | [user-analytics-backend-7m1e.onrender.com](https://user-analytics-backend-7m1e.onrender.com) |
 | Backend health check | [Open health check](https://user-analytics-backend-7m1e.onrender.com/health) |
 | Source repository | [github.com/LAKSHYAMSHARMA/user-analytics](https://github.com/LAKSHYAMSHARMA/user-analytics) |
 
+Replace the two `YOUR-...` Vercel values with the deployed URLs from the Vercel project settings.
 
 ## How It Works
 
@@ -77,3 +78,70 @@ user-analytics/
 | `GET` | `/api/heatmap` | Return all click coordinates |
 | `GET` | `/api/heatmap?url=...` | Filter click coordinates by page URL |
 | `GET` | `/health` | Check backend availability |
+
+## Local Setup
+
+### Backend
+
+```powershell
+cd backend
+npm install
+```
+
+Create `backend/.env`:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_atlas_connection_string
+```
+
+Start the API:
+
+```powershell
+node src/server.js
+```
+
+MongoDB Atlas must allow the machine or deployment IP address in **Network Access**.
+
+### Dashboard
+
+```powershell
+cd dashboard
+npm install
+```
+
+Create `dashboard/.env`:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+Start the dashboard:
+
+```powershell
+npm run dev
+```
+
+For Vercel, set `VITE_API_URL` to:
+
+```text
+https://user-analytics-backend-7m1e.onrender.com
+```
+
+### Demo Storefront
+
+The static demo uses `demo-site/config.js` to point its tracker at the backend:
+
+```js
+window.DEMO_API_URL = 'https://user-analytics-backend-7m1e.onrender.com';
+```
+
+Serve `demo-site` with any static web server and open `index.html` in the browser. The demo sends events automatically when the page loads and when users click anywhere on the page.
+
+## Validation
+
+```powershell
+cd dashboard
+npm run lint
+npm run build
+```
